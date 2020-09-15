@@ -38,6 +38,7 @@ public class NBody {
             for(int i=0;i<N;i++){
                 planets[i].update(dt,FxArray[i],FyArray[i]);
             }
+            t+=dt;
         }
 
         StdOut.printf("%d\n", planets.length);
