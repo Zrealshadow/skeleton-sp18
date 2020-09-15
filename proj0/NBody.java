@@ -12,8 +12,8 @@ public class NBody {
         Double T=Double.parseDouble(args[0]);
         Double dt=Double.parseDouble(args[1]);
         String filename=args[2];
-        String userDirectory = System.getProperty("user.dir");
-        filename=userDirectory+'/'+filename;
+//        String userDirectory = System.getProperty("user.dir");
+//        filename=userDirectory+'/'+filename;
         double radius=NBody.readRadius(filename);
 
         Planet [] planets =NBody.readPlanets(filename);
@@ -50,15 +50,14 @@ public class NBody {
 
     }
 
-    public static void drawPlanet(double radius,String filename,Planet [] planets){
-        String userDirectory = System.getProperty("user.dir");
-        String starfield=userDirectory+"/images/starfield.jpg";
+    private static void drawPlanet(double radius,String filename,Planet [] planets){
+//        String userDirectory = System.getProperty("user.dir");
+        String starfield="./images/starfield.jpg";
         StdDraw.clear();
         StdDraw.setScale(-radius,radius);
         StdDraw.picture(0,0,starfield);
         for(Planet planet:planets){
-            String path=userDirectory+"/images/"+planet.imgFileName;
-            StdDraw.picture(planet.xxPos,planet.yyPos,path);
+            planet.draw();
         }
         StdDraw.show();
     }
@@ -81,4 +80,5 @@ public class NBody {
         }
         return planets;
     }
+
 }

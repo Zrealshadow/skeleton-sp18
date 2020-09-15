@@ -8,7 +8,7 @@ import static java.lang.Math.sqrt;
  **/
 
 public class Planet {
-    static final double G=6.67e-11;
+    private static final double G=6.67e-11;
 
     public double xxPos;
     public double yyPos;
@@ -56,7 +56,7 @@ public class Planet {
         return F*delta_y/r;
     }
 
-    public Boolean equal(Planet roinate){
+    private Boolean equal(Planet roinate){
         if(this.xxPos==roinate.xxPos && this.yyPos==roinate.yyPos
                 && this.mass==roinate.mass){
             return true;
@@ -100,6 +100,10 @@ public class Planet {
 
         this.xxPos+=dt*this.xxVel;
         this.yyPos+=dt*this.yyVel;
+    }
+
+    public void draw(){
+        StdDraw.picture(this.xxPos,this.yyPos,"./images/"+this.imgFileName);
     }
 
 
