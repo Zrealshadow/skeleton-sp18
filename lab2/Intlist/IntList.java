@@ -92,7 +92,8 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         IntList ptr=findtail(A);
-        if(ptr!=null) ptr.rest=B;
+        if(ptr==null) return B;
+        ptr.rest=B;
         return A;
     }
 
@@ -108,7 +109,6 @@ public class IntList {
     public static IntList catenate(IntList A, IntList B) {
         IntList X=copy(A);
         IntList Y=copy(B);
-
         return dcatenate(X,Y);
     }
 
