@@ -65,6 +65,7 @@ public class IntList {
     /**
      * Returns a list equal to L with all elements squared. Non-destructive.
      */
+
     public static IntList squareListRecursive(IntList L) {
         if (L == null) {
             return null;
@@ -74,24 +75,41 @@ public class IntList {
 
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
 
+    private static IntList findtail(IntList L){
+        if(L==null) return null;
+        IntList p=L;
+        while(p.rest!=null){
+            p=p.rest;
+        }
+        return p;
+    }
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * *  elements of B.  May modify items of A. Don't use 'new'.
      */
 
+
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList ptr=findtail(A);
+        if(ptr!=null) ptr.rest=B;
+        return A;
     }
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
+    private static IntList copy(IntList L){
+        if(L==null) return null;
+        return new IntList(L.first,copy(L.rest));
+    }
+
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList X=copy(A);
+        IntList Y=copy(B);
+
+        return dcatenate(X,Y);
     }
 
 
