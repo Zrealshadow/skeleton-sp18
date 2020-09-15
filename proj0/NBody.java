@@ -7,6 +7,7 @@
  **/
 
 public class NBody {
+
     public static void main(String [] args){
         Double T=Double.parseDouble(args[0]);
         Double dt=Double.parseDouble(args[1]);
@@ -14,13 +15,18 @@ public class NBody {
         String userDirectory = System.getProperty("user.dir");
         filename=userDirectory+'/'+filename;
         double radius=NBody.readRadius(filename);
-        Planet [] planets=NBody.readPlanet(filename);
 
-
+        In in=new In(filename);
+        int N=in.readInt();
+        double r=in.readDouble();
+        Planet [] planets =new Planet[N];
+        for(int i=0;i<N;i++){
+            planets[i]=new Planet(in.readDouble(),in.readDouble(),in.readDouble(),
+                    in.readDouble(),in.readDouble(),in.readString());
+        }
 
         StdDraw.enableDoubleBuffering();
 
-        int N=planets.length;
 //        System.out.println(N);
 //        System.out.println(filename);
         double t=0;
