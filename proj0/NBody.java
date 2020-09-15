@@ -16,15 +16,8 @@ public class NBody {
         filename=userDirectory+'/'+filename;
         double radius=NBody.readRadius(filename);
 
-        In in=new In(filename);
-        int N=in.readInt();
-        double r=in.readDouble();
-        Planet [] planets =new Planet[N];
-        for(int i=0;i<N;i++){
-            planets[i]=new Planet(in.readDouble(),in.readDouble(),in.readDouble(),
-                    in.readDouble(),in.readDouble(),in.readString());
-        }
-
+        Planet [] planets =NBody.readPlanets(filename);
+        int N=planets.length;
         StdDraw.enableDoubleBuffering();
 
 //        System.out.println(N);
@@ -77,7 +70,7 @@ public class NBody {
         return radius;
     }
 
-    public static Planet [] readPlanet(String filename){
+    public static Planet [] readPlanets(String filename){
         In in=new In(filename);
         int N=in.readInt();
         double radius=in.readDouble();
