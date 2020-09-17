@@ -36,7 +36,7 @@ public class LinkedListDequeTest {
 	public static void addIsEmptySizeTest() {
 		System.out.println("Running add/isEmpty/Size test.");
 		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
+
 		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -58,7 +58,7 @@ public class LinkedListDequeTest {
 		lld1.printDeque();
 
 		printTestStatus(passed);
-		*/
+
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
@@ -67,26 +67,83 @@ public class LinkedListDequeTest {
 		System.out.println("Running add/remove test.");
 
 		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
+
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
-		// should be empty 
+		// should be empty
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
 		lld1.addFirst(10);
-		// should not be empty 
+		// should not be empty
 		passed = checkEmpty(false, lld1.isEmpty()) && passed;
 
 		lld1.removeFirst();
-		// should be empty 
+		// should be empty
 		passed = checkEmpty(true, lld1.isEmpty()) && passed;
 
 		printTestStatus(passed);
-		*/
+
+	}
+	public static void Array_addRemoveTest(){
+		System.out.println("Running add/remove test.");
+		ArrayDeque<Integer> ad=new ArrayDeque<>();
+		boolean passed=checkEmpty(true,ad.isEmpty());
+		ad.addFirst(1);
+		ad.addLast(2);
+		passed=checkSize(2,ad.size()) &&passed;
+		ad.removeFirst();
+		passed=checkSize(1,ad.size())&&passed;
+		ad.removeFirst();
+		passed=checkEmpty(true,ad.isEmpty())&&passed;
+
+		ad.addLast(3);
+		ad.addLast(4);
+		ad.addLast(5);
+		ad.removeFirst();
+		ad.removeFirst();
+		passed=checkSize(1,ad.size()) &&passed;
+		ad.removeLast();
+		passed=checkEmpty(true,ad.isEmpty())&&passed;
+
+		printTestStatus(passed);
+	}
+
+	public static void Array_AddisEmptySizeTest(){
+		System.out.println("Rrunnig add/isEmpty/Size test!");
+
+		ArrayDeque<String> ad= new ArrayDeque<>();
+
+		boolean passed= checkEmpty(true,ad.isEmpty());
+		ad.addFirst("front");
+
+		passed=checkSize(1,ad.size()) && passed;
+		passed=checkEmpty(false,ad.isEmpty());
+
+		ad.addLast("middle");
+		passed=checkSize(2,ad.size()) && passed;
+
+		ad.addLast("back");
+		ad.addLast("back2");
+		ad.addLast("back3");
+		ad.addLast("back4");
+		ad.addLast("back5");
+		passed=checkSize(7,ad.size()) && passed;
+
+		ad.addFirst("first1");
+		ad.addFirst("first2");
+		passed=checkSize(9,ad.size());
+
+		System.out.println("Printinng out deque");
+		ad.printDeque();
+
+		printTestStatus(passed);
+
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
-		addIsEmptySizeTest();
-		addRemoveTest();
+//		addIsEmptySizeTest();
+//		addRemoveTest();
+//		Array_AddisEmptySizeTest();
+		Array_addRemoveTest();
 	}
 } 
