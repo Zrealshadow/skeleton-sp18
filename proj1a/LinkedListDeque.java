@@ -4,34 +4,34 @@
  * @author: Lingze_Waldinsamkeit
  * @create: 2020-09-17 15:18
  **/
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T>{
     private int size;
 
-    private class OwnNode <T>{
+    private class OwnNode<T> {
         public T item;
         public OwnNode<T> next;
         public OwnNode<T> pri;
-        public OwnNode(T v,OwnNode n,OwnNode p){
-            item=v;
-            next=n;
-            pri=p;
+        public OwnNode(T v, OwnNode n, OwnNode p) {
+            item = v;
+            next = n;
+            pri = p;
         }
     }
 
     private OwnNode<T> sentinal;
 
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         sentinal= new OwnNode<>(null,null,null);
         sentinal.next=sentinal;
         sentinal.pri=sentinal;
         size=0;
     }
-    public LinkedListDeque(T x){
-        sentinal = new OwnNode<>(null,sentinal,sentinal);
-        OwnNode<T> tmp= new OwnNode<>(x,sentinal.next,sentinal);
-        sentinal.next=tmp;
-        sentinal.pri=tmp;
-    }
+//    public LinkedListDeque(T x){
+//        sentinal = new OwnNode<>(null,sentinal,sentinal);
+//        OwnNode<T> tmp= new OwnNode<>(x,sentinal.next,sentinal);
+//        sentinal.next=tmp;
+//        sentinal.pri=tmp;
+//    }
 
     public void addFirst(T item){
         OwnNode<T> tmp=new OwnNode<>(item,sentinal.next,sentinal);
@@ -53,6 +53,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst(){
+        if(this.isEmpty()){
+            return null;
+        }
         OwnNode<T> tmp=sentinal.next;
         tmp.next.pri=sentinal;
         sentinal.next=tmp.next;
@@ -61,6 +64,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast(){
+        if(this.isEmpty()){
+            return null;
+        }
         OwnNode<T> tmp=sentinal.pri;
         tmp.pri.next=sentinal;
         sentinal.pri=tmp.pri;

@@ -67,15 +67,20 @@ public class ArrayDeque<T>{
     }
 
     public T removeFirst(){
-        int index=nextFirst;
+        if(this.isEmpty()){
+            return null;
+        }
         nextFirst=(nextFirst+1)%items.length;
-        return items[index];
+        return items[nextFirst];
     }
 
     public T removeLast(){
-        int index=nextLast;
+        if(this.isEmpty()){
+            return null;
+        }
+
         nextLast=(nextLast-1+items.length)%items.length;
-        return items[index];
+        return items[nextLast];
     }
 
     public T get(int index){
