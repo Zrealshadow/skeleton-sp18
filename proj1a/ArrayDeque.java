@@ -20,28 +20,28 @@ public class ArrayDeque< T > {
 
     private void resize(int capacity) {
 //        T[] new_items=(T []) new Object[capacity];
-//        System.arraycopy(items,0,new_items,0,items.length);
-//        int last_nextFirst=nextFirst;
-//        nextFirst=capacity-items.length+nextLast;
-//        System.arraycopy(items,last_nextFirst,new_items,nextFirst,items.length-nextLast);
-//        items=new_items;
+
         int size = this.size();
         T[] new_items=(T []) new Object[capacity];
         if (nextFirst<nextLast){
             System.arraycopy(items,nextFirst + 1,new_items,0,nextLast - nextFirst - 1);
+            items = new_items;
+            nextFirst = items.length - 1;
+            nextLast = size;
         }
         else {
-            System.arraycopy(items,nextFirst + 1,new_items,0,items.length - nextFirst - 1);
-            System.arraycopy(items,0,new_items,items.length - nextFirst - 2,nextLast);
+            System.arraycopy(items,0,new_items,0,items.length);
+            int last_nextFirst=nextFirst;
+            nextFirst=capacity-items.length+nextLast;
+            System.arraycopy(items,last_nextFirst,new_items,nextFirst,items.length-nextLast);
+            items=new_items;
         }
-        items = new_items;
-        nextFirst = items.length - 1;
-        nextLast = size;
+
     }
 
     public void addFirst(T item) {
         if(nextLast == nextFirst){
-            int c = items.length*2;
+            int c = items.length * 2;
             resize(c);
         }
         items[nextFirst] = item;
@@ -50,7 +50,7 @@ public class ArrayDeque< T > {
 
     public void addLast(T item) {
         if (nextLast == nextFirst) {
-            int c = items.length*2;
+            int c = items.length * 2;
             resize(c);
         }
         items[nextLast] = item;
@@ -84,7 +84,7 @@ public class ArrayDeque< T > {
         }
         nextFirst = (nextFirst+1) % items.length;
         T ans=items[nextFirst];
-        if(this.size()<items.length/2-2 && items.length>START_SIZE){
+        if(this.size()<items.length/2-2 && items.length/2-2>START_SIZE){
             this.resize(items.length/2);
         }
         return ans;
@@ -96,7 +96,7 @@ public class ArrayDeque< T > {
         }
         nextLast=(nextLast-1+items.length)%items.length;
         T ans=items[nextLast];
-        if (this.size()<items.length/2-2 && items.length>START_SIZE) {
+        if (this.size()<items.length/2-2 && items.length/2-2>START_SIZE) {
             this.resize(items.length/2);
         }
         return ans;
