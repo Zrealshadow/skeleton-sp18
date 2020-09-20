@@ -30,10 +30,10 @@ public class ArrayDeque< T > {
             nextLast = size;
         }
         else {
-            System.arraycopy(items,0,new_items,0,items.length);
+            System.arraycopy(items,0,new_items,0,nextLast);
             int last_nextFirst=nextFirst;
-            nextFirst=capacity-items.length+nextLast;
-            System.arraycopy(items,last_nextFirst,new_items,nextFirst,items.length-nextLast);
+            nextFirst=capacity-(items.length-nextFirst);
+            System.arraycopy(items,last_nextFirst,new_items,nextFirst,items.length-last_nextFirst);
             items=new_items;
         }
 
@@ -84,7 +84,7 @@ public class ArrayDeque< T > {
         }
         nextFirst = (nextFirst+1) % items.length;
         T ans=items[nextFirst];
-        if(this.size()<items.length/2-2 && items.length/2-2>START_SIZE){
+        if(this.size()<items.length/2-2 && items.length/2>=START_SIZE){
             this.resize(items.length/2);
         }
         return ans;
@@ -96,15 +96,20 @@ public class ArrayDeque< T > {
         }
         nextLast=(nextLast-1+items.length)%items.length;
         T ans=items[nextLast];
-        if (this.size()<items.length/2-2 && items.length/2-2>START_SIZE) {
+        if (this.size()<items.length/2-2 && items.length/2>=START_SIZE) {
             this.resize(items.length/2);
         }
         return ans;
     }
 
     public T get(int index) {
-        int i = (nextFirst+index+1)%items.length;
-        return items[i];
+        if(index < this.size() && index >= 0) {
+            int i = (nextFirst + index + 1) % items.length;
+            return items[i];
+        }
+        else {
+            return null;
+        }
     }
 
 //    public static void main(String [] args){

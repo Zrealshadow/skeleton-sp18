@@ -90,18 +90,23 @@ public class LinkedListDequeTest {
 		ad.addFirst(1);
 		ad.addLast(2);
 		passed=checkSize(2,ad.size()) &&passed;
-		ad.removeFirst();
+		int t=ad.removeFirst();
+		System.out.println("remove first"+Integer.toString(t));
 		passed=checkSize(1,ad.size())&&passed;
-		ad.removeFirst();
+		t=ad.removeFirst();
+		System.out.println("remove first"+Integer.toString(t));
 		passed=checkEmpty(true,ad.isEmpty())&&passed;
 
 		ad.addLast(3);
 		ad.addLast(4);
 		ad.addLast(5);
-		ad.removeFirst();
-		ad.removeFirst();
+		t=ad.removeFirst();
+		System.out.println("remove first"+Integer.toString(t));
+		t=ad.removeFirst();
+		System.out.println("remove first"+Integer.toString(t));
 		passed=checkSize(1,ad.size()) &&passed;
-		ad.removeLast();
+		t=ad.removeLast();
+		System.out.println("remove Last"+Integer.toString(t));
 		passed=checkEmpty(true,ad.isEmpty())&&passed;
 
 		printTestStatus(passed);
@@ -132,18 +137,34 @@ public class LinkedListDequeTest {
 		ad.addFirst("first2");
 		passed=checkSize(9,ad.size());
 
+		String t;
+        t=ad.removeFirst();
+        System.out.println("remove first"+t);
+        t=ad.removeFirst();
+        System.out.println("remove first"+t);
+        t=ad.removeLast();
+        System.out.println("remove Last"+t);
+
+        t=ad.removeLast();
+        System.out.println("remove Last"+t);
+
+        t=ad.removeLast();
+        System.out.println("remove Last"+t);
+
+        t=ad.removeLast();
+        System.out.println("remove Last"+t);
+
 		System.out.println("Printinng out deque");
 		ad.printDeque();
 
 		printTestStatus(passed);
-
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 //		addIsEmptySizeTest();
 //		addRemoveTest();
-//		Array_AddisEmptySizeTest();
-		Array_addRemoveTest();
+		Array_AddisEmptySizeTest();
+//		Array_addRemoveTest();
 	}
 } 
