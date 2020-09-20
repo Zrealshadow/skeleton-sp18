@@ -83,10 +83,11 @@ public class ArrayDeque< T > {
             return null;
         }
         nextFirst = (nextFirst+1) % items.length;
+        T ans=items[nextFirst];
         if(this.size()<items.length/2-2 && items.length>START_SIZE){
             this.resize(items.length/2);
         }
-        return items[nextFirst];
+        return ans;
     }
 
     public T removeLast() {
@@ -94,14 +95,15 @@ public class ArrayDeque< T > {
             return null;
         }
         nextLast=(nextLast-1+items.length)%items.length;
+        T ans=items[nextLast];
         if (this.size()<items.length/2-2 && items.length>START_SIZE) {
             this.resize(items.length/2);
         }
-        return items[nextLast];
+        return ans;
     }
 
     public T get(int index) {
-        int i = (nextFirst+index)%items.length;
+        int i = (nextFirst+index+1)%items.length;
         return items[i];
     }
 
