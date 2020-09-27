@@ -15,9 +15,9 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word) {
-        Deque<Character> d = wordToDeque(word);
+//        Deque<Character> d = wordToDeque(word);
         CharacterComparator cc = new OffByOne();
-        return isPalindrome(d) || isPalindrome(word,cc);
+        return  isPalindrome(word,cc);
     }
 
     private boolean isPalindrome(Deque<Character> d) {
@@ -51,13 +51,11 @@ public class Palindrome {
         if (first_idx >= last_idx){
             return true;
         }
-        else if (cc.equalChars(word.charAt(first_idx),word.charAt(last_idx))) {
-            first_idx ++;
-            last_idx --;
-            return isPalindrome_(word, first_idx, last_idx, cc);
-        }
         else {
-            return false;
+            char a = word.charAt(first_idx++);
+            char b = word.charAt(last_idx--);
+            boolean t = a == b || cc.equalChars(a,b);
+            return t && isPalindrome_(word,first_idx,last_idx,cc);
         }
     }
 

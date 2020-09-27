@@ -5,7 +5,7 @@ public class TestPalindrome {
     // You must use this palindrome, and not instantiate
     // new Palindromes, or the autograder might be upset.
     static Palindrome palindrome = new Palindrome();
-    static CharacterComparator cmp = new OffByOne();
+//    static CharacterComparator cmp = new OffByOne();
     @Test
     public void testWordToDeque() {
         Deque d = palindrome.wordToDeque("persiflage");
@@ -17,8 +17,7 @@ public class TestPalindrome {
     } /* Uncomment this class once you've created your Palindrome class. */
 
     @Test
-    public void testIsPalindrome() {
-
+    public void testIsPalindrome(){
         assertTrue(palindrome.isPalindrome(""));
         assertTrue(palindrome.isPalindrome("a" ));
         assertTrue(palindrome.isPalindrome("k"));
@@ -27,6 +26,21 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("racecar"));
         assertFalse(palindrome.isPalindrome("ka"));
         assertFalse(palindrome.isPalindrome("car"));
-        assertFalse(palindrome.isPalindrome("aaaaaaab"));
+        assertTrue(palindrome.isPalindrome("aaaaaaab"));
+
+        assertTrue(palindrome.isPalindrome("flake"));
+        assertTrue(palindrome.isPalindrome("tuts"));
+        assertTrue(palindrome.isPalindrome("ungot"));
+
+        assertTrue(palindrome.isPalindrome("hong"));
+
+        assertTrue(palindrome.isPalindrome("%"));
+
+        assertTrue(palindrome.isPalindrome("ABCBCBA"));
+        assertTrue(palindrome.isPalindrome("%%%&"));
+
+        assertFalse(palindrome.isPalindrome("ABABK"));
+        assertFalse(palindrome.isPalindrome("hogM"));
+        assertFalse(palindrome.isPalindrome("%Ab%"));
     }
 }
