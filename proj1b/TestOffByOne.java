@@ -17,7 +17,7 @@ public class TestOffByOne {
         assertFalse(offByOne.equalChars('c','c'));
         assertFalse(offByOne.equalChars('&','K'));
         assertTrue(offByOne.equalChars('K','L'));
-        assertTrue(offByOne.equalChars('M','N'));
+        assertFalse(offByOne.equalChars('M','n'));
         assertFalse(offByOne.equalChars(' ','I'));
     }
 }
