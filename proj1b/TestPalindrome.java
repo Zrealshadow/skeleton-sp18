@@ -24,7 +24,15 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("kk"));
         assertTrue(palindrome.isPalindrome("noon"));
         assertTrue(palindrome.isPalindrome("racecar"));
-
+        assertFalse(palindrome.isPalindrome("ka"));
+        assertFalse(palindrome.isPalindrome("car"));
+        assertFalse(palindrome.isPalindrome("aaaaaaab"));
+        assertTrue(palindrome.isPalindrome("5665"));
+        assertFalse(palindrome.isPalindrome("5kk6"));
+        assertTrue(palindrome.isPalindrome("%%%&%%%"));
+        assertTrue(palindrome.isPalindrome("ABA"));
+        assertFalse(palindrome.isPalindrome("AB"));
+        assertFalse(palindrome.isPalindrome("%&"));
 
         assertFalse(palindrome.isPalindrome("ka",cmp));
         assertFalse(palindrome.isPalindrome("car",cmp));
@@ -38,16 +46,20 @@ public class TestPalindrome {
 
         assertTrue(palindrome.isPalindrome("hong",cmp));
 
-        assertFalse(palindrome.isPalindrome("%"));
-        assertFalse(palindrome.isPalindrome("%%%&&&"));
-        assertTrue(palindrome.isPalindrome("ABCBCBA"));
-        assertFalse(palindrome.isPalindrome("%%%&"));
+        assertTrue(palindrome.isPalindrome("%",cmp));
+        assertTrue(palindrome.isPalindrome("",cmp));
+        assertTrue(palindrome.isPalindrome("%%%&&&",cmp));
+        assertTrue(palindrome.isPalindrome("ABCBBAB",cmp));
+        assertFalse(palindrome.isPalindrome("ABCBCBA",cmp));
+        assertFalse(palindrome.isPalindrome("%%%&",cmp));
+        assertFalse(palindrome.isPalindrome("aa",cmp));
+        assertTrue(palindrome.isPalindrome("ba",cmp));
 
-        assertFalse(palindrome.isPalindrome("ABABK"));
-        assertFalse(palindrome.isPalindrome("hogM"));
-        assertFalse(palindrome.isPalindrome("%Ab%"));
+        assertFalse(palindrome.isPalindrome("ABABK",cmp));
+        assertFalse(palindrome.isPalindrome("hogM",cmp));
+        assertFalse(palindrome.isPalindrome("%Ab%",cmp));
 
-        assertTrue(palindrome.isPalindrome("AbbA"));
+        assertTrue(palindrome.isPalindrome("AbaB",cmp));
         assertFalse(palindrome.isPalindrome("AbbB",cmp));
 
     }

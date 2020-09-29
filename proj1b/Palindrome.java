@@ -21,11 +21,8 @@ public class Palindrome {
     }
 
     private boolean isPalindrome(Deque<Character> d) {
-        if (d.size() == 0) {
+        if (d.size() == 0 || d.size() == 1) {
             return true;
-        }
-        else if(d.size() == 1) {
-            return isCharacter(d.removeFirst());
         }else {
             char first = d.removeFirst();
             char last = d.removeLast();
@@ -35,22 +32,15 @@ public class Palindrome {
 //            else {
 //                return false;
 //            }
-            return isCharacter(first) && isCharacter(last) && first == last && isPalindrome(d);
+            return first == last && isPalindrome(d);
         }
     }
 
-    private boolean isCharacter(char c) {
-        return (c <= 'Z' && c>= 'A') || (c <= 'z' && c>= 'a');
-    }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        if (word.length()==0){
+        if (word.length()==0 || word.length() == 1){
             return true;
-        }
-        else if (word.length() == 1){
-            return isCharacter(word.charAt(0));
-        }
-        else{
+        }else {
             int first_idx = 0;
             int last_idx = word.length() - 1;
             return isPalindrome_(word, first_idx, last_idx, cc);
@@ -64,7 +54,7 @@ public class Palindrome {
         else {
             char a = word.charAt(first_idx++);
             char b = word.charAt(last_idx--);
-            boolean t =  cc.equalChars(a,b) && isCharacter(a) && isCharacter(b);
+            boolean t =  cc.equalChars(a,b);
             return t && isPalindrome_(word,first_idx,last_idx,cc);
         }
     }
